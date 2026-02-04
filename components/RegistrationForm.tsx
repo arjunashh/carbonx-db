@@ -176,13 +176,21 @@ export default function RegistrationForm() {
                                     </div>
                                     <div className="space-y-1">
                                         <label className="text-xs font-mono text-white/40 uppercase">Current Year</label>
-                                        <select {...register("year")} className="input-field appearance-none">
-                                            <option value="">Select Year</option>
-                                            <option value="1">1st Year</option>
-                                            <option value="2">2nd Year</option>
-                                            <option value="3">3rd Year</option>
-                                            <option value="4">4th Year</option>
-                                        </select>
+                                        <div className="grid grid-cols-4 gap-2">
+                                            {["1", "2", "3", "4"].map((year) => (
+                                                <label key={year} className="relative cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        {...register("year")}
+                                                        value={year}
+                                                        className="peer sr-only"
+                                                    />
+                                                    <div className="p-3 text-center border border-white/10 rounded-lg text-xs font-bold peer-checked:bg-carbon-400 peer-checked:text-black peer-checked:border-carbon-400 transition-all uppercase">
+                                                        {year}{year === "1" ? "st" : year === "2" ? "nd" : year === "3" ? "rd" : "th"}
+                                                    </div>
+                                                </label>
+                                            ))}
+                                        </div>
                                         {errors.year && <p className="text-red-500 text-[10px] mt-1 uppercase">{errors.year.message}</p>}
                                     </div>
                                 </div>
@@ -221,25 +229,43 @@ export default function RegistrationForm() {
                                 exit={{ x: -20, opacity: 0 }}
                                 className="space-y-4"
                             >
-                                <h3 className="text-xl font-bold text-white mb-6 font-mono tracking-tight">/03_MISC_PROTOCOLS</h3>
-
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="space-y-4">
                                     <div className="space-y-1">
                                         <label className="text-xs font-mono text-white/40 uppercase">Food Preference</label>
-                                        <select {...register("food")} className="input-field">
-                                            <option value="Veg">Vegetarian</option>
-                                            <option value="Non-Veg">Non-Vegetarian</option>
-                                        </select>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {["Veg", "Non-Veg"].map((type) => (
+                                                <label key={type} className="relative cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        {...register("food")}
+                                                        value={type}
+                                                        className="peer sr-only"
+                                                    />
+                                                    <div className="p-3 text-center border border-white/10 rounded-lg text-xs font-bold peer-checked:bg-carbon-400 peer-checked:text-black peer-checked:border-carbon-400 transition-all uppercase">
+                                                        {type}
+                                                    </div>
+                                                </label>
+                                            ))}
+                                        </div>
                                     </div>
+
                                     <div className="space-y-1">
                                         <label className="text-xs font-mono text-white/40 uppercase">Unisex T-Shirt Size</label>
-                                        <select {...register("shirtSize")} className="input-field">
-                                            <option value="S">Small (S)</option>
-                                            <option value="M">Medium (M)</option>
-                                            <option value="L">Large (L)</option>
-                                            <option value="XL">Extra Large (XL)</option>
-                                            <option value="XXL">XXL</option>
-                                        </select>
+                                        <div className="grid grid-cols-5 gap-2">
+                                            {["S", "M", "L", "XL", "XXL"].map((size) => (
+                                                <label key={size} className="relative cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        {...register("shirtSize")}
+                                                        value={size}
+                                                        className="peer sr-only"
+                                                    />
+                                                    <div className="p-3 text-center border border-white/10 rounded-lg text-[10px] font-bold peer-checked:bg-carbon-400 peer-checked:text-black peer-checked:border-carbon-400 transition-all uppercase">
+                                                        {size}
+                                                    </div>
+                                                </label>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
