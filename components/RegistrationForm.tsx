@@ -181,7 +181,7 @@ export default function RegistrationForm() {
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label className="text-xs font-mono text-white/40 uppercase">Course / Department</label>
-                                        <input {...register("course")} className="input-field" placeholder="CSE" />
+                                        <input {...register("course")} className="input-field" placeholder="ECE" />
                                         {errors.course && <p className="text-red-500 text-[10px] mt-1 uppercase">{errors.course.message}</p>}
                                     </div>
                                     <div className="space-y-1">
@@ -226,7 +226,7 @@ export default function RegistrationForm() {
 
                                 <div className="space-y-1">
                                     <label className="text-xs font-mono text-white/40 uppercase">Team Name</label>
-                                    <input {...register("teamName")} className="input-field" placeholder="CyberSquad" />
+                                    <input {...register("teamName")} className="input-field" placeholder="" />
                                     {errors.teamName && <p className="text-red-500 text-[10px] mt-1 uppercase">{errors.teamName.message}</p>}
                                 </div>
                             </motion.div>
