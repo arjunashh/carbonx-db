@@ -16,7 +16,6 @@ const formSchema = z.object({
     course: z.string().min(2, "Course is required"),
     year: z.string().min(1, "Select your year"),
     teamName: z.string().optional(),
-    github: z.string().optional(),
     linkedin: z.string().optional(),
     experience: z.string().min(1, "Select experience level"),
     interest: z.string().optional(),
@@ -244,11 +243,6 @@ export default function RegistrationForm() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-mono text-white/40 uppercase">GitHub Profile URL</label>
-                                    <input {...register("github")} className="input-field" placeholder="https://github.com/yourname" />
-                                </div>
-
-                                <div className="space-y-1">
                                     <label className="text-xs font-mono text-white/40 uppercase">LinkedIn Profile URL</label>
                                     <input {...register("linkedin")} className="input-field" placeholder="https://linkedin.com/in/yourname" />
                                 </div>
@@ -303,6 +297,6 @@ export default function RegistrationForm() {
             <div className="mt-8 text-center text-white/20 font-mono text-[10px] tracking-widest uppercase">
                 © 2026 RSET IEDC // HACKSUS v5.0 // CARBONX TRACK
             </div>
-        </div>
+        </div >
     );
 }
