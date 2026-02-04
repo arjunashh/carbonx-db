@@ -11,7 +11,6 @@ const registrationSchema = z.object({
     course: z.string().min(2, "Course is required"),
     year: z.string().min(1, "Select your year"),
     teamName: z.string().optional().nullable(),
-    linkedin: z.string().optional().nullable(),
     experience: z.string().min(1, "Select experience level"),
     interest: z.string().optional().nullable(),
     food: z.string().min(1, "Select food preference"),
