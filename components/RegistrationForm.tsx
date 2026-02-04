@@ -225,7 +225,7 @@ export default function RegistrationForm() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-mono text-white/40 uppercase">Team Name (use 'Individual' if none)</label>
+                                    <label className="text-xs font-mono text-white/40 uppercase">Team Name</label>
                                     <input {...register("teamName")} className="input-field" placeholder="CyberSquad" />
                                     {errors.teamName && <p className="text-red-500 text-[10px] mt-1 uppercase">{errors.teamName.message}</p>}
                                 </div>
