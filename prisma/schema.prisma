@@ -20,8 +20,6 @@ model Participant {
   course      String
   year        String
   teamName    String?
-  github      String?
-  linkedin    String?
   experience  String   // Beginner, Intermediate, Advanced
   interest    String?  @default("") // Why join?
   food        String   // Veg, Non-Veg

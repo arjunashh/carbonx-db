@@ -33,6 +33,6 @@ export async function registerParticipant(data: RegistrationData) {
         if (error instanceof z.ZodError) {
             return { success: false, message: "Validation failed", errors: error.flatten() };
         }
-        return { success: false, message: "Internal server error" };
+        return { success: false, message: error.message || "Internal server error" };
     }
 }
