@@ -15,9 +15,8 @@ const formSchema = z.object({
     college: z.string().min(2, "College name is required"),
     course: z.string().min(2, "Course is required"),
     year: z.string().min(1, "Select your year"),
-    teamName: z.string().optional(),
+    teamName: z.string().min(2, "Team name is required (use 'Individual' if alone)"),
     experience: z.string().min(1, "Select experience level"),
-    interest: z.string().optional(),
     food: z.string().min(1, "Select food preference"),
     shirtSize: z.string().min(1, "Select shirt size"),
 });
@@ -226,8 +225,9 @@ export default function RegistrationForm() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-mono text-white/40 uppercase">Team Name (If any)</label>
+                                    <label className="text-xs font-mono text-white/40 uppercase">Team Name (use 'Individual' if none)</label>
                                     <input {...register("teamName")} className="input-field" placeholder="CyberSquad" />
+                                    {errors.teamName && <p className="text-red-500 text-[10px] mt-1 uppercase">{errors.teamName.message}</p>}
                                 </div>
                             </motion.div>
                         )}

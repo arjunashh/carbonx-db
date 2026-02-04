@@ -10,7 +10,7 @@ const registrationSchema = z.object({
     college: z.string().min(2, "College name is required"),
     course: z.string().min(2, "Course is required"),
     year: z.string().min(1, "Select your year"),
-    teamName: z.string().optional().nullable(),
+    teamName: z.string().min(1, "Team Name is required"),
     experience: z.string().min(1, "Select experience level"),
     interest: z.string().optional().nullable(),
     food: z.string().min(1, "Select food preference"),
