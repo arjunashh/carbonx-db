@@ -16,7 +16,6 @@ const formSchema = z.object({
     course: z.string().min(2, "Course is required"),
     year: z.string().min(1, "Select your year"),
     teamName: z.string().optional(),
-    linkedin: z.string().optional(),
     experience: z.string().min(1, "Select experience level"),
     interest: z.string().optional(),
     food: z.string().min(1, "Select food preference"),
@@ -240,11 +239,6 @@ export default function RegistrationForm() {
                                             <option value="XXL">XXL</option>
                                         </select>
                                     </div>
-                                </div>
-
-                                <div className="space-y-1">
-                                    <label className="text-xs font-mono text-white/40 uppercase">LinkedIn Profile URL</label>
-                                    <input {...register("linkedin")} className="input-field" placeholder="https://linkedin.com/in/yourname" />
                                 </div>
                             </motion.div>
                         )}
