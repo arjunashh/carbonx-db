@@ -33,6 +33,9 @@ export async function registerParticipant(data: RegistrationData) {
         if (error instanceof z.ZodError) {
             return { success: false, message: "Validation failed", errors: error.flatten() };
         }
+        if (error.code === 'P2002') {
+            return { success: false, message: "This email is already registered." };
+        }
         return { success: false, message: error.message || "Internal server error" };
     }
 }
