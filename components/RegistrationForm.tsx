@@ -29,6 +29,8 @@ export default function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -44,7 +46,7 @@ export default function RegistrationForm() {
     });
 
     const nextStep = async () => {
-        if (step >= 3) return;
+        if (step >= 3 || isTransitioning) return;
 
         const fields = step === 1
             ? ["name", "email", "phone", "college"]
@@ -53,12 +55,21 @@ export default function RegistrationForm() {
                 : ["food", "shirtSize"];
 
         const isValid = await trigger(fields as any);
-        if (isValid) setStep((s) => s + 1);
+        if (isValid) {
+            if (step === 2) {
+                setIsTransitioning(true);
+                setStep(3);
+                setTimeout(() => setIsTransitioning(false), 500);
+            } else {
+                setStep((s) => s + 1);
+            }
+        }
     };
 
     const prevStep = () => setStep((s) => s - 1);
 
     const onSubmit = async (data: FormData) => {
+        if (isTransitioning) return;
         setIsSubmitting(true);
         try {
             const result = await registerParticipant(data);
@@ -229,6 +240,7 @@ export default function RegistrationForm() {
                                 exit={{ x: -20, opacity: 0 }}
                                 className="space-y-4"
                             >
+                                <h3 className="text-xl font-bold text-white mb-6 font-mono tracking-tight">/03_MISC_PROTOCOLS</h3>
                                 <div className="space-y-4">
                                     <div className="space-y-1">
                                         <label className="text-xs font-mono text-white/40 uppercase">Food Preference</label>
@@ -288,6 +300,7 @@ export default function RegistrationForm() {
                             <button
                                 type="button"
                                 onClick={nextStep}
+                                disabled={isTransitioning}
                                 className="neon-button flex-1 flex items-center justify-center gap-2 uppercase font-mono tracking-wider"
                             >
                                 Next Step
@@ -296,7 +309,7 @@ export default function RegistrationForm() {
                         ) : (
                             <button
                                 type="submit"
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || isTransitioning}
                                 className="neon-button flex-1 flex items-center justify-center gap-2 uppercase font-mono tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isSubmitting ? (
