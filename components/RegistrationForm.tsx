@@ -44,6 +44,8 @@ export default function RegistrationForm() {
     });
 
     const nextStep = async () => {
+        if (step >= 3) return;
+
         const fields = step === 1
             ? ["name", "email", "phone", "college"]
             : step === 2
